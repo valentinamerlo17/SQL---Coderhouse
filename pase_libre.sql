@@ -3,22 +3,22 @@ USE pase_libre;
 
 CREATE TABLE IF NOT EXISTS SOCIO (
     socio_id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100),
-    apellido VARCHAR(100),
-    email VARCHAR(150) UNIQUE,
-    telefono VARCHAR(50),
+    nombre VARCHAR(20),
+    apellido VARCHAR(20),
+    email VARCHAR(50) UNIQUE,
+    telefono VARCHAR(20),
     fecha_alta DATE,
     estado_plan VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS EMPRESA (
     empresa_id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(150),
-    tipo VARCHAR(50),             
+    nombre VARCHAR(20),
+    tipo VARCHAR(20),             
     rut VARCHAR(30),
-    rubro VARCHAR(100),
-    email VARCHAR(150),
-    telefono VARCHAR(30)
+    rubro VARCHAR(20),
+    email VARCHAR(50),
+    telefono VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS CONVENIO_EMPRESA_PASELIBRE (
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS CONVENIO_EMPRESA_PASELIBRE (
 
 CREATE TABLE IF NOT EXISTS PLAN (
     plan_id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50),        
-    descripcion VARCHAR(255),
+    nombre VARCHAR(20),        
+    descripcion VARCHAR(250),
     precio_base DECIMAL(10,2)
 );
 
@@ -62,36 +62,36 @@ CREATE TABLE IF NOT EXISTS SOCIO_PLAN (
 
 CREATE TABLE IF NOT EXISTS CENTRO_DEPORTIVO (
     centro_id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(150),
-    razon_social VARCHAR(150),
+    nombre VARCHAR(20),
+    razon_social VARCHAR(20),
     rut VARCHAR(30),
-    email VARCHAR(150),
-    telefono VARCHAR(30)
+    email VARCHAR(50),
+    telefono VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS SEDE (
     sede_id INT PRIMARY KEY AUTO_INCREMENT,
     centro_id INT,
-    nombre VARCHAR(150),
-    direccion VARCHAR(200),
-    barrio VARCHAR(100),
-    departamento VARCHAR(100),
+    nombre VARCHAR(20),
+    direccion VARCHAR(50),
+    barrio VARCHAR(20),
+    departamento VARCHAR(20),
     FOREIGN KEY (centro_id) REFERENCES CENTRO_DEPORTIVO(centro_id)
 );
 
 CREATE TABLE IF NOT EXISTS ACTIVIDAD (
     actividad_id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100),
+    nombre VARCHAR(20),
     descripcion TEXT
 );
 
 CREATE TABLE IF NOT EXISTS ENTRENADOR (
     entrenador_id INT PRIMARY KEY AUTO_INCREMENT,
     sede_id INT,
-    nombre VARCHAR(150),
-    email VARCHAR(150),
-    telefono VARCHAR(30),
-    especialidad VARCHAR(100),
+    nombre VARCHAR(20),
+    email VARCHAR(50),
+    telefono VARCHAR(02),
+    especialidad VARCHAR(30),
     activo BOOLEAN,
     FOREIGN KEY (sede_id) REFERENCES SEDE(sede_id)
 );
