@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS ENTRENADOR (
     sede_id INT,
     nombre VARCHAR(20),
     email VARCHAR(50),
-    telefono VARCHAR(02),
+    telefono VARCHAR(20),
     especialidad VARCHAR(30),
     activo BOOLEAN,
     FOREIGN KEY (sede_id) REFERENCES SEDE(sede_id)
