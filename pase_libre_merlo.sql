@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS SOCIO_PLAN (
     plan_id INT NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE,
+    precio_final DECIMAL(10,2),
     estado VARCHAR(20) NOT NULL
         CHECK (estado IN ('activo','vencido','pausado')),
     FOREIGN KEY (socio_id) REFERENCES SOCIO(socio_id),
@@ -317,6 +318,41 @@ BEGIN
         SET estado = 'usada'
         WHERE clase_id = NEW.clase_id
           AND estado = 'confirmada';
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER trg_validar_plan_minimo_reserva
+BEFORE INSERT ON RESERVA
+FOR EACH ROW
+BEGIN
+    DECLARE v_plan_socio INT;
+    DECLARE v_plan_minimo INT;
+
+    SELECT sp.plan_id
+    INTO v_plan_socio
+    FROM SOCIO_PLAN sp
+    WHERE sp.socio_id = NEW.socio_id
+      AND sp.estado = 'activo'
+    ORDER BY sp.fecha_inicio DESC
+    LIMIT 1;
+
+    IF v_plan_socio IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El socio no tiene un plan activo';
+    END IF;
+
+    SELECT c.plan_minimo_id
+    INTO v_plan_minimo
+    FROM CLASE c
+    WHERE c.clase_id = NEW.clase_id;
+
+    IF v_plan_minimo IS NOT NULL AND v_plan_socio < v_plan_minimo THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'El plan del socio no cumple el plan minimo requerido para la clase';
     END IF;
 END //
 
