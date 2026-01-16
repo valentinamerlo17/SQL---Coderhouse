@@ -29,12 +29,7 @@ INSERT INTO PLAN (nombre, descripcion, precio_base) VALUES
 ('Gold','Acceso intermedio',1800.00),
 ('Platinum','Acceso completo',2500.00),
 ('Black','Acceso premium',3200.00),
-('Diamond','Acceso total',4000.00),
-('Diamond Plus','Acceso total + perks',4500.00),
-('Elite','Acceso elite',5000.00),
-('Elite Plus','Acceso elite + vip',5500.00),
-('Ultra','Acceso ultra',6000.00),
-('Ultra Max','Acceso ultra max',6500.00);
+('Diamond','Acceso total',4000.00);
 
 INSERT INTO CENTRO_DEPORTIVO (nombre, razon_social, rut, email, telefono) VALUES
 ('FitCenter','FitCenter SA','201111110019','info@fitcenter.com','23010001'),
@@ -114,11 +109,11 @@ INSERT INTO SOCIO_PLAN (socio_id, plan_id, fecha_inicio, fecha_fin, precio_final
 (3,1,'2024-02-01',NULL,720.00,'activo'),
 (4,4,'2024-02-10',NULL,2080.00,'activo'),
 (5,5,'2024-02-20',NULL,3200.00,'activo'),
-(6,6,'2024-03-01',NULL,3375.00,'activo'),
-(7,7,'2024-03-10',NULL,4250.00,'activo'),
-(8,8,'2024-03-15',NULL,3025.00,'activo'),
-(9,2,'2024-03-20','2024-10-20',1620.00,'vencido'),
-(10,9,'2024-03-25',NULL,4680.00,'activo');
+(6,2,'2024-03-01',NULL,3375.00,'activo'),
+(7,5,'2024-03-10',NULL,4250.00,'activo'),
+(8,2,'2024-03-15',NULL,3025.00,'activo'),
+(9,4,'2024-03-20','2024-10-20',1620.00,'vencido'),
+(10,3,'2024-03-25',NULL,4680.00,'activo');
 
 INSERT INTO CLASE (actividad_id, entrenador_id, plan_minimo_id, fecha, hora_inicio, hora_fin, estado) VALUES
 (1,1,1,'2024-05-10','08:00:00','09:00:00','activa'),
